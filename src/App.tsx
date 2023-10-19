@@ -1,5 +1,11 @@
+import { Button, Layout } from "@src/components/common";
+
 function App() {
-  return <h1>Hello World!</h1>;
+  return (
+    <Layout>
+      <Button className="text-highlight px-5">View Reservations</Button>
+    </Layout>
+  );
 }
 
 export default App;
