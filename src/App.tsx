@@ -1,12 +1,18 @@
 import { Input, Layout } from "@src/components/common";
-import { useRef } from "react";
+import { useState } from "react";
 
 function App() {
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [inputValue, setInputValue] = useState("");
   return (
     <Layout>
       {/* <Button className="text-highlight px-5">View Reservations</Button> */}
-      <Input placeholder="Name" required id="name" ref={inputRef} />
+      <Input
+        placeholder="Name"
+        required
+        id="name"
+        value={inputValue}
+        onChange={(e) => setInputValue(e.currentTarget.value)}
+      />
     </Layout>
   );
 }
