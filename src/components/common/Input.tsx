@@ -8,6 +8,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const onInputFocus = () => {
       if (localRef && localRef.current) {
         localRef.current.focus();
+      } else if (inputRef && "current" in inputRef && inputRef.current) {
+        inputRef.current.focus();
       }
     };
     return (
