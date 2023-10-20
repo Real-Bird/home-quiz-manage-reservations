@@ -1,15 +1,20 @@
+import { cls } from "@src/utils";
 import { TextareaHTMLAttributes, forwardRef } from "react";
 
-export const TextArea = forwardRef<
-  HTMLTextAreaElement,
-  TextareaHTMLAttributes<HTMLTextAreaElement>
->(({ ...textareaAttrs }, textareaRef) => {
-  return (
-    <div className="relative resize-none border-2 rounded-md shadow-custom w-full bg-transparent px-3 py-2 text-sm text-zinc-800  border-zinc-300 focus:border-highlight cursor-text h-40">
+export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
+  ({ className, ...textareaAttrs }, textareaRef) => {
+    return (
       <textarea
-        className="peer focus:outline-none appearance-none overflow-auto resize-none w-full h-full"
+        className={cls(
+          className ? className : "",
+          "focus:border-highlight border-zinc-300 text-zinc-800 border-2 rounded-md shadow-custom w-full bg-transparent focus:outline-none appearance-none overflow-auto resize-none px-3 py-2"
+        )}
         ref={textareaRef}
         {...textareaAttrs}></textarea>
-    </div>
-  );
-});
+    );
+  }
+);
+
+interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  className?: string;
+}
