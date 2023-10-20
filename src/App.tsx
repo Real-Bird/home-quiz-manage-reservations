@@ -1,15 +1,16 @@
-import { Layout, TextArea } from "@src/components/common";
-import { useState } from "react";
+import { Layout, SelectTable } from "@src/components/common";
+import { tableArr } from "@src/mockup/tableItems";
 
 function App() {
-  const [textValue, setTextValue] = useState("");
+  const mockupList = tableArr.map((item) => ({
+    id: item.id,
+    tableItemLabel: `Table ${item.table}·Floor ${item.floor}`,
+  }));
+
   return (
     <Layout>
       {/* <Button className="text-highlight px-5">View Reservations</Button> */}
-      <TextArea
-        value={textValue}
-        onChange={(e) => setTextValue(e.target.value)}
-      />
+      <SelectTable tableItems={mockupList} />
     </Layout>
   );
 }
