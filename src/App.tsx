@@ -1,16 +1,16 @@
-import { Layout, SelectTable } from "@src/components/common";
-import { tableArr } from "@src/mockup/tableItems";
+import { Layout, ModalOverview } from "@src/components/common";
+import { SelectDate } from "@src/components/reservation";
+import { useRef } from "react";
 
 function App() {
-  const mockupList = tableArr.map((item) => ({
-    id: item.id,
-    tableItemLabel: `Table ${item.table}·Floor ${item.floor}`,
-  }));
+  const myRef = useRef<HTMLDivElement>(null);
 
   return (
     <Layout>
       {/* <Button className="text-highlight px-5">View Reservations</Button> */}
-      <SelectTable tableItems={mockupList} />
+      <ModalOverview>
+        <SelectDate ref={myRef} />
+      </ModalOverview>
     </Layout>
   );
 }

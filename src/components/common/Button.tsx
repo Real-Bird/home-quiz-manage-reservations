@@ -6,11 +6,11 @@ export const Button = ({ children, className, ...btnAttrs }: ButtonProps) => {
   return (
     <button
       className={cls(
-        className ? className : "",
         disabled
           ? "opacity-50 shadow-none cursor-default"
           : "hover:brightness-90 active:shadow-none",
-        "py-3 shadow-custom font-semibold cursor-pointer rounded-md flex justify-center items-center bg-gradient-to-t from-default to-white"
+        "py-3 shadow-custom font-semibold cursor-pointer rounded-md flex justify-center items-center bg-gradient-to-t",
+        className ? className : ""
       )}
       {...btnAttrs}>
       {children}

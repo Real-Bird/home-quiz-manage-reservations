@@ -9,7 +9,7 @@ module.exports = {
         highlight: "#EC551F",
       },
       boxShadow: {
-        custom: "0 2px 10px rgba(0, 0, 0, 0.15)",
+        custom: "0 2px 10px rgba(0, 0, 0, 0.3)",
       },
     },
   },
