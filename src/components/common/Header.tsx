@@ -14,5 +14,5 @@ export const Header = ({ children, onModalClose }: HeaderProps) => {
 
 interface HeaderProps {
   children: ReactNode;
-  onModalClose: () => void;
+  onModalClose?: () => void;
 }

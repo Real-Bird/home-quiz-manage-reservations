@@ -1,10 +1,7 @@
 import { Button } from "@src/components/common";
-import Phone from "@assets/icons/phone.svg?react";
-import CheckedDate from "@assets/icons/event_available.svg?react";
-import Group from "@assets/icons/group.svg?react";
-import Edit from "@assets/icons/edit.svg?react";
 import Trash from "@assets/icons/trash.svg?react";
 import { getIntlFormat } from "@src/utils";
+import { useNavigate } from "react-router-dom";
 
 export const MainCard = ({
   clientName,
@@ -15,21 +12,21 @@ export const MainCard = ({
   reservedFloor,
   notes,
 }: MainCardProps) => {
+  const navigate = useNavigate();
   return (
-    <div className="bg-white px-2 py-4 rounded-md shadow-custom space-y-3">
+    <div
+      className="bg-white px-2 py-4 rounded-md shadow-custom space-y-3 cursor-pointer"
+      onClick={() => navigate("/edit")}>
       <div className="flex items-center gap-2">
         <strong>{clientName}</strong>
-        <Button className="rounded-3xl from-default to-white text-sm text-common space-x-2 px-2 py-1.5">
-          <Phone />
+        <Button className="rounded-[1.5rem] from-default to-white text-sm text-common space-x-2 px-2 py-1.5 before:content-[''] before:bg-[url(../assets/icons/phone.svg)] before:w-6 before:h-6 before:inline-block before:bg-cover">
           {phoneNumber}
         </Button>
       </div>
-      <div className="flex items-center gap-2">
-        <CheckedDate />
+      <div className="flex items-center gap-2 before:content-[''] before:bg-[url(../assets/icons/event_available.svg)] before:w-6 before:h-6 before:inline-block before:bg-cover">
         {getIntlFormat(reservedDate)}
       </div>
-      <div className="flex items-center gap-2">
-        <Group />
+      <div className="flex items-center gap-2 before:content-[''] before:bg-[url(../assets/icons/group.svg)] before:w-6 before:h-6 before:inline-block before:bg-cover">
         {personCount}
       </div>
       <div className="text-sm text-common">
@@ -49,12 +46,12 @@ export const MainCard = ({
       </div>
       <div className="h-7">
         {notes ? (
-          <div className="flex items-center gap-2">
-            {notes} <Edit />
+          <div className="flex items-center gap-1 after:content-[''] after:bg-[url(../assets/icons/edit.svg)] after:w-4 after:h-4 after:inline-block after:bg-cover">
+            {notes}
           </div>
         ) : null}
       </div>
-      <div className="flex space-x-3">
+      <div className="flex space-x-3" onClick={(e) => e.stopPropagation()}>
         <Button className="w-16 from-default to-white">
           <Trash />
         </Button>

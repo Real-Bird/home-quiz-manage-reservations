@@ -8,10 +8,10 @@ import {
 } from "@src/components/reservation";
 import { reservationData } from "@src/mockup/reservationData";
 import Trash from "@assets/icons/trash.svg?react";
+import { useNavigate } from "react-router-dom";
 
-export const EditReservationModal = ({
-  onModalClose,
-}: EditReservationModalProps) => {
+export const EditReservationModal = () => {
+  const navigate = useNavigate();
   const {
     clientName,
     phoneNumber,
@@ -24,10 +24,7 @@ export const EditReservationModal = ({
   const [text, setText] = useState(notes);
 
   return (
-    <ReserveForm
-      onModalClose={onModalClose}
-      onGoBack={onModalClose}
-      title="Edit">
+    <ReserveForm titlePrefix="Edit">
       <InfoInputTop
         clientName={clientName}
         phoneNumber={phoneNumber}
@@ -43,17 +40,17 @@ export const EditReservationModal = ({
         onTextChange={(e) => setText(e.target.value)}
       />
       <div className="flex space-x-3">
-        <Button className="w-16 from-default to-white">
+        <Button
+          className="w-16 from-default to-white"
+          onClick={() => navigate(-1)}>
           <Trash />
         </Button>
-        <Button className="flex-1 text-white from-highlight to-red-400">
+        <Button
+          className="flex-1 text-white from-highlight to-red-400"
+          onClick={() => navigate(-1)}>
           Seated
         </Button>
       </div>
     </ReserveForm>
   );
 };
-
-interface EditReservationModalProps {
-  onModalClose: () => void;
-}

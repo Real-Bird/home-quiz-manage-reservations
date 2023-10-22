@@ -32,13 +32,13 @@ export const InfoInputMid = ({
         <strong className="text-zinc-400 text-sm">Guests</strong>
         <div className="grid grid-cols-3 gap-1">
           <Button
-            className="from-default to-white w-12 h-12"
+            className="from-default to-white w-10 h-10"
             onClick={onDecreasePerson}>
             <Minus />
           </Button>
-          <span className="w-12 h-12 text-3xl text-center">{personCount}</span>
+          <span className="w-10 h-10 text-3xl text-center">{personCount}</span>
           <Button
-            className="from-default to-white w-12 h-12"
+            className="from-default to-white w-10 h-10"
             onClick={onIncreasePerson}>
             <Plus />
           </Button>

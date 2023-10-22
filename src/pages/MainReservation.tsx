@@ -1,10 +1,11 @@
+import { OutletContextProps } from "@src/App";
 import { ModalOverview } from "@src/components/common";
 import { MainCard, MainContent, MainHeader } from "@src/components/reservation";
 import { reservationData } from "@src/mockup/reservationData";
+import { useOutletContext } from "react-router-dom";
 
-export const MainReservationModal = ({
-  onModalClose,
-}: MainReservationModalProps) => {
+export const MainReservationModal = () => {
+  const { onModalClose } = useOutletContext<OutletContextProps>();
   return (
     <ModalOverview onOutsideClick={onModalClose}>
       <MainHeader
@@ -19,7 +20,3 @@ export const MainReservationModal = ({
     </ModalOverview>
   );
 };
-
-interface MainReservationModalProps {
-  onModalClose: () => void;
-}

@@ -1,9 +1,14 @@
 import { Button, Layout } from "@src/components/common";
-import { EditReservationModal } from "@src/pages/EditReservation";
 import { useState } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
+  const onModalClose = () => {
+    setIsModalOpen(false);
+    navigate("/");
+  };
   return (
     <Layout>
       <Button
@@ -11,11 +16,13 @@ function App() {
         onClick={() => setIsModalOpen(true)}>
         View Reservations
       </Button>
-      {isModalOpen ? (
-        <EditReservationModal onModalClose={() => setIsModalOpen(false)} />
-      ) : null}
+      {isModalOpen ? <Outlet context={{ onModalClose }} /> : null}
     </Layout>
   );
 }
 
 export default App;
+
+export interface OutletContextProps {
+  onModalClose?: () => void;
+}

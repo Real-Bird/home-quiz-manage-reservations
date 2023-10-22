@@ -26,7 +26,7 @@ export const SelectTable = ({
     <div className="relative w-full group">
       <div
         className={cls(
-          tableItemBadge.length > 0 ? "-translate-y-[1rem]" : "",
+          tableItemBadge.length > 0 ? "-translate-y-4" : "",
           "absolute top-1 translate-x-3 z-10 transform text-[0.75rem] text-zinc-300 duration-300 translate-y-1/2 bg-white cursor-text px-1"
         )}>
         Select Table

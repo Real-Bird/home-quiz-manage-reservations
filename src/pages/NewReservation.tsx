@@ -7,19 +7,16 @@ import {
   InfoInputTop,
 } from "@src/components/reservation";
 import { emptyReservationData } from "@src/mockup/reservationData";
+import { useNavigate } from "react-router-dom";
 
-export const NewReservationModal = ({
-  onModalClose,
-}: NewReservationModalProps) => {
+export const NewReservationModal = () => {
+  const navigate = useNavigate();
   const [text, setText] = useState("");
 
   const hasEmpty = Object.values(emptyReservationData).includes(undefined);
 
   return (
-    <ReserveForm
-      onModalClose={onModalClose}
-      onGoBack={onModalClose}
-      title="New">
+    <ReserveForm titlePrefix="New">
       <InfoInputTop />
       <InfoInputMid />
       <InfoInputBottom
@@ -28,13 +25,10 @@ export const NewReservationModal = ({
       />
       <Button
         className="w-full h-28 from-highlight to-red-400 text-default"
-        disabled={hasEmpty}>
+        disabled={hasEmpty}
+        onClick={() => navigate(-1)}>
         Save
       </Button>
     </ReserveForm>
   );
 };
-
-interface NewReservationModalProps {
-  onModalClose: () => void;
-}
