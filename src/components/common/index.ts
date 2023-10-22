@@ -5,3 +5,4 @@ export * from "./TextArea";
 export * from "./SelectTable";
 export * from "./ModalOverview";
 export * from "./Header";
+export * from "./TextBox";

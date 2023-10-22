@@ -8,7 +8,7 @@ export const MainReservationModal = ({
   return (
     <ModalOverview onOutsideClick={onModalClose}>
       <MainHeader
-        onCloseModal={onModalClose}
+        onModalClose={onModalClose}
         reservationCount={reservationData.length}
       />
       <MainContent>

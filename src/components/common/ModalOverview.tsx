@@ -13,7 +13,7 @@ export const ModalOverview = ({
         }
       }}>
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-80 max-w-3xl w-full h-[75%]"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-72 max-w-3xl w-full h-[70%]"
         onClick={(e) => e.stopPropagation()}>
         {children}
       </div>

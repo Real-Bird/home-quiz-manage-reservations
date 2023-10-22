@@ -2,11 +2,11 @@ import Add from "@assets/icons/add.svg?react";
 import { Button, Header } from "@src/components/common";
 
 export const MainHeader = ({
-  onCloseModal,
+  onModalClose,
   reservationCount,
 }: MainHeaderProps) => {
   return (
-    <Header onModalClose={onCloseModal}>
+    <Header onModalClose={onModalClose}>
       <Button className="px-4 bg-default from-default to-white justify-self-start">
         <Add />
         <span className="text-highlight">New Reservation</span>
@@ -26,6 +26,6 @@ export const MainHeader = ({
 };
 
 interface MainHeaderProps {
-  onCloseModal: () => void;
+  onModalClose: () => void;
   reservationCount?: number;
 }

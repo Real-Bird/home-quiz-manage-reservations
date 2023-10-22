@@ -11,7 +11,7 @@ export const MainCard = ({
   phoneNumber,
   reservedDate,
   personCount,
-  reservedTableCount,
+  reservedTableNumber,
   reservedFloor,
   notes,
 }: MainCardProps) => {
@@ -33,13 +33,13 @@ export const MainCard = ({
         {personCount}
       </div>
       <div className="text-sm text-common">
-        {reservedTableCount ? (
+        {reservedTableNumber ? (
           <span>
             Reserved Table{" "}
             <strong className="text-black">
-              {Array.isArray(reservedTableCount)
-                ? reservedTableCount.join(",")
-                : reservedTableCount}
+              {Array.isArray(reservedTableNumber)
+                ? reservedTableNumber.join(",")
+                : reservedTableNumber}
             </strong>{" "}
             · Floor {reservedFloor}
           </span>
@@ -71,7 +71,7 @@ interface MainCardProps {
   phoneNumber: string;
   reservedDate: Date;
   personCount: number;
-  reservedTableCount?: number | number[];
+  reservedTableNumber?: number | number[];
   reservedFloor?: number;
   notes?: string;
 }

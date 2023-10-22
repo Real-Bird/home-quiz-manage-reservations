@@ -3,7 +3,7 @@ import { InputHTMLAttributes, forwardRef, useRef } from "react";
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ label, required, ...inputAttrs }, inputRef) => {
-    const { id, disabled, value } = inputAttrs;
+    const { id, disabled } = inputAttrs;
     const localRef = useRef<HTMLInputElement>(null);
     const onInputFocus = () => {
       if (localRef && localRef.current) {
@@ -27,11 +27,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {label ? (
           <label
             className={cls(
-              value ? "-translate-y-3" : "",
-              "absolute top-0 translate-x-3 z-10 transform text-[0.75rem] text-zinc-300 duration-300 peer-placeholder-shown:translate-y-1/2 peer-focus:-translate-y-3 bg-white peer-focus:text-highlight cursor-text px-1"
+              required
+                ? "after:content-['*'] after:text-highlight after:ml-1"
+                : "",
+              "absolute top-0 translate-x-3 z-10 transform text-[0.75rem] text-zinc-300 duration-300 peer-placeholder-shown:translate-y-1/2 -translate-y-3 peer-focus:-translate-y-3 bg-white peer-focus:text-highlight cursor-text px-1"
             )}
             htmlFor={id}>
-            {label} {required && <span className="text-highlight">*</span>}
+            {label}
           </label>
         ) : null}
       </div>

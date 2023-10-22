@@ -1,5 +1,5 @@
 import { Button, Layout } from "@src/components/common";
-import { MainReservationModal } from "@src/pages/MainReservation";
+import { EditReservationModal } from "@src/pages/EditReservation";
 import { useState } from "react";
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
         View Reservations
       </Button>
       {isModalOpen ? (
-        <MainReservationModal onModalClose={() => setIsModalOpen(false)} />
+        <EditReservationModal onModalClose={() => setIsModalOpen(false)} />
       ) : null}
     </Layout>
   );
