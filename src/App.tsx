@@ -1,16 +1,19 @@
-import { Layout, ModalOverview } from "@src/components/common";
-import { SelectDate } from "@src/components/reservation";
-import { useRef } from "react";
+import { Button, Layout } from "@src/components/common";
+import { MainReservationModal } from "@src/pages/MainReservation";
+import { useState } from "react";
 
 function App() {
-  const myRef = useRef<HTMLDivElement>(null);
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <Layout>
-      {/* <Button className="text-highlight px-5">View Reservations</Button> */}
-      <ModalOverview>
-        <SelectDate ref={myRef} />
-      </ModalOverview>
+      <Button
+        className="text-highlight px-5"
+        onClick={() => setIsModalOpen(true)}>
+        View Reservations
+      </Button>
+      {isModalOpen ? (
+        <MainReservationModal onModalClose={() => setIsModalOpen(false)} />
+      ) : null}
     </Layout>
   );
 }

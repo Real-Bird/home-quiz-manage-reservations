@@ -9,7 +9,7 @@ import {
 } from "@src/utils";
 import { HTMLAttributes, MouseEvent, forwardRef, useState } from "react";
 import { UpDownBtn } from "@src/components/reservation/UpDownBtn";
-import { CustomDateView } from "@src/components/reservation/CustomDateView";
+import { CustomDateView } from "@src/components/common/CustomDateView";
 import { Button } from "@src/components/common";
 import Trash from "@assets/icons/trash.svg?react";
 

@@ -4,3 +4,4 @@ export * from "./Input";
 export * from "./TextArea";
 export * from "./SelectTable";
 export * from "./ModalOverview";
+export * from "./Header";

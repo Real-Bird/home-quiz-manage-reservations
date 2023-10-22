@@ -40,3 +40,25 @@ export const getAdjustTime = (
   }
   return new Date(time);
 };
+
+export const getIntlFormat = (reservedDate: Date) => {
+  const today = new Date().toLocaleDateString("en", {
+    year: "2-digit",
+    month: "short",
+    day: "2-digit",
+  });
+  const reserved = reservedDate.toLocaleDateString("en", {
+    year: "2-digit",
+    month: "short",
+    day: "2-digit",
+  });
+  const isToday = today === reserved;
+  const reservedTime = reservedDate.toLocaleTimeString("en", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  });
+  return isToday
+    ? `Today, ${reservedTime}`
+    : `${reserved.split(", ")[0]}, ${reservedTime}`;
+};
