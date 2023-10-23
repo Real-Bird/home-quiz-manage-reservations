@@ -1,4 +1,5 @@
 import { Button, Header } from "@src/components/common";
+import { useResister } from "@src/contexts/resister";
 import { useNavigate } from "react-router-dom";
 
 export const MainHeader = ({
@@ -6,11 +7,15 @@ export const MainHeader = ({
   reservationCount,
 }: MainHeaderProps) => {
   const navigate = useNavigate();
+  const [, resisterDispatch] = useResister();
   return (
     <Header onModalClose={onModalClose}>
       <Button
         className="px-4 bg-default from-default to-white justify-self-start before:content-[''] before:bg-[url(../assets/icons/add.svg)] before:w-6 before:h-6 before:bg-cover"
-        onClick={() => navigate("/register")}>
+        onClick={() => {
+          resisterDispatch({ type: "INITIALIZE" });
+          navigate("/register");
+        }}>
         <span className="text-highlight">New Reservation</span>
       </Button>
       <div className="text-2xl text-center">

@@ -11,7 +11,7 @@ export const ReserveForm = ({
 }: ReserveForm) => {
   const { onModalClose } = useOutletContext<OutletContextProps>();
   return (
-    <ModalOverview onOutsideClick={onModalClose}>
+    <ModalOverview>
       <FormHeader titlePrefix={titlePrefix} onModalClose={onModalClose} />
       <form
         className="h-full bg-white rounded-b-md px-4 py-3 flex flex-col gap-8"

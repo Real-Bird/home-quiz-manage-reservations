@@ -12,14 +12,18 @@ import { UpDownBtn } from "@src/components/reservation/UpDownBtn";
 import { CustomDateView } from "@src/components/common/CustomDateView";
 import { Button } from "@src/components/common";
 import Trash from "@assets/icons/trash.svg?react";
-import { useNavigate } from "react-router-dom";
+import { parseISO } from "date-fns";
 
 export const SelectDate = forwardRef<HTMLDivElement, SelectDateProps>(
-  ({ initialDate = new Date(), ...attrs }, resultRef) => {
+  (
+    { initialDate = new Date(), onSaveDate, onDeleteDate, ...attrs },
+    resultRef
+  ) => {
     const [dateState, setDateState] = useState(() =>
       setInitialDate(initialDate)
     );
-    const navigate = useNavigate();
+
+    const parseInitToIso = parseISO(new Date(initialDate).toISOString());
 
     const onChangeTime = (e: MouseEvent<HTMLButtonElement>) => {
       const type = e.currentTarget.dataset["type"] as TargetFormat;
@@ -35,7 +39,7 @@ export const SelectDate = forwardRef<HTMLDivElement, SelectDateProps>(
 
     const setCustomDayClassName = (date: Date): string => {
       const dateString = date.toDateString();
-      const initialDateString = initialDate.toDateString();
+      const initialDateString = new Date(initialDate).toDateString();
       const resultDateString = dateState.toDateString();
       const today =
         dateString === initialDateString
@@ -61,7 +65,7 @@ export const SelectDate = forwardRef<HTMLDivElement, SelectDateProps>(
           <CustomDateView
             selected={dateState}
             onChange={onChangeHourMinute}
-            minDate={initialDate}
+            minDate={parseInitToIso}
             showTimeSelect
             showTimeSelectOnly
             locale={"en"}
@@ -72,7 +76,7 @@ export const SelectDate = forwardRef<HTMLDivElement, SelectDateProps>(
           <CustomDateView
             selected={dateState}
             onChange={onChangeMonthDay}
-            minDate={initialDate}
+            minDate={parseInitToIso}
             dateFormat={"MMM dd"}
             dayClassName={setCustomDayClassName}
           />
@@ -112,14 +116,12 @@ export const SelectDate = forwardRef<HTMLDivElement, SelectDateProps>(
           </div>
         </div>
         <div className="flex space-x-3">
-          <Button
-            className="w-16 from-default to-white"
-            onClick={() => navigate(-1)}>
+          <Button className="w-16 from-default to-white" onClick={onDeleteDate}>
             <Trash />
           </Button>
           <Button
             className="flex-1 text-white from-highlight to-red-600"
-            onClick={() => navigate(-1)}>
+            onClick={onSaveDate}>
             Save
           </Button>
         </div>
@@ -130,4 +132,6 @@ export const SelectDate = forwardRef<HTMLDivElement, SelectDateProps>(
 
 interface SelectDateProps extends HTMLAttributes<HTMLDivElement> {
   initialDate?: Date;
+  onSaveDate?: () => void;
+  onDeleteDate?: () => void;
 }

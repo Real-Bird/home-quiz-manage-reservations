@@ -2,18 +2,24 @@ import { cls } from "@src/utils";
 import { useState } from "react";
 import ArrowDropDown from "@assets/icons/arrow_drop_down.svg?react";
 
-export const SelectTable = ({
+export const SelectTable = <T extends Record<string, unknown>>({
   tableItemLabels,
   onTableItemChange,
   existedLabel = [],
   maxPick = 2,
-}: SelectTableProps) => {
+}: SelectTableProps<T>) => {
   const [tableItemBadge, setTableItemBadge] =
-    useState<TableItemLabel[]>(existedLabel);
+    useState<TableItemLabel<T>[]>(existedLabel);
 
-  const onTableItemClick = (item: TableItemLabel) => {
-    if (tableItemBadge.length >= maxPick) {
+  const onTableItemClick = (item: TableItemLabel<T>) => {
+    if (
+      tableItemBadge.length >= maxPick ||
+      tableItemBadge.find((badge) => badge.id === item.id)
+    ) {
       return;
+    }
+    if (typeof onTableItemChange === "function") {
+      onTableItemChange(item);
     }
     setTableItemBadge((prev) => {
       const prevSet = new Set([...prev, item]);
@@ -22,11 +28,18 @@ export const SelectTable = ({
     });
   };
 
+  const onBadgeClick = (item: TableItemLabel<T>) => {
+    if (typeof onTableItemChange === "function") {
+      onTableItemChange(item, true);
+    }
+    setTableItemBadge((prev) => prev.filter((v) => v.id !== item.id));
+  };
+
   return (
     <div className="relative w-full group">
       <div
         className={cls(
-          tableItemBadge.length > 0 ? "-translate-y-4" : "",
+          tableItemBadge.length > 0 ? "-translate-y-[0.9rem]" : "",
           "absolute top-1 translate-x-3 z-10 transform text-[0.75rem] text-zinc-300 duration-300 translate-y-1/2 bg-white cursor-text px-1"
         )}>
         Select Table
@@ -36,9 +49,7 @@ export const SelectTable = ({
           <div
             key={`${item.id}-table-badge`}
             className="text-xs mx-1 p-1 my-2 bg-default rounded-full flex after:content-[''] after:bg-[url(../assets/icons/close.svg)] after:w-4 after:h-4 after:rounded-full after:bg-slate-200 after:bg-cover after:bg-no-repeat after:bg-origin-content after:p-1 cursor-pointer"
-            onClick={() =>
-              setTableItemBadge((prev) => prev.filter((v) => v.id !== item.id))
-            }>
+            onClick={() => onBadgeClick(item)}>
             <span>{item.tableItemLabel}</span>
           </div>
         ))}
@@ -53,10 +64,7 @@ export const SelectTable = ({
           <li
             key={item.id}
             className="w-full cursor-pointer bg-white px-3 py-2 placeholder-gray-400 shadow-sm hover:bg-gray-300"
-            onClick={() => {
-              onTableItemChange && onTableItemChange();
-              onTableItemClick(item);
-            }}>
+            onClick={() => onTableItemClick(item)}>
             {item.tableItemLabel}
           </li>
         ))}
@@ -65,14 +73,17 @@ export const SelectTable = ({
   );
 };
 
-type TableItemLabel = {
+type BaseTableItem = {
   id: string;
   tableItemLabel: string;
 };
 
-interface SelectTableProps {
-  tableItemLabels: TableItemLabel[];
+export type TableItemLabel<T extends Record<string, unknown>> = BaseTableItem &
+  T;
+
+interface SelectTableProps<T extends Record<string, unknown>> {
+  tableItemLabels: TableItemLabel<T>[];
   maxPick?: number;
-  existedLabel?: TableItemLabel[];
-  onTableItemChange?: () => void;
+  existedLabel?: TableItemLabel<T>[];
+  onTableItemChange?: (data: TableItemLabel<T>, isDelete?: boolean) => void;
 }

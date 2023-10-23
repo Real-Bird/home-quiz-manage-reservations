@@ -5,6 +5,7 @@ export const Button = ({ children, className, ...btnAttrs }: ButtonProps) => {
   const { disabled } = btnAttrs;
   return (
     <button
+      type="button"
       className={cls(
         disabled
           ? "opacity-50 shadow-none cursor-default"

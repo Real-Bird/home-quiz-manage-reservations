@@ -1,5 +1,6 @@
 import { Button, Input } from "@src/components/common";
 import { getIntlFormat } from "@src/utils";
+import { ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom";
 export const InfoInputTop = ({
   clientName,
@@ -14,7 +15,7 @@ export const InfoInputTop = ({
       <div className="w-full h-10">
         <Input
           label="Name"
-          id="name"
+          id="clientName"
           value={clientName}
           onChange={onNameChange}
           required
@@ -23,7 +24,7 @@ export const InfoInputTop = ({
       <div className="w-full h-10">
         <Input
           label="Phone"
-          id="phone"
+          id="phoneNumber"
           value={phoneNumber}
           onChange={onPhoneChange}
           required
@@ -46,6 +47,6 @@ interface InfoInputTopProps {
   clientName?: string;
   phoneNumber?: string;
   reservedDate?: Date;
-  onNameChange?: () => void;
-  onPhoneChange?: () => void;
+  onNameChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  onPhoneChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }

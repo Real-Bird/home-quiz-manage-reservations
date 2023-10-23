@@ -1,31 +1,41 @@
-import { Button, SelectTable } from "@src/components/common";
+import { Button, SelectTable, TableItemLabel } from "@src/components/common";
 import Minus from "@assets/icons/math-minus.svg?react";
 import Plus from "@assets/icons/math-plus.svg?react";
 import { tableArr } from "@src/mockup/tableItems";
 
 export const InfoInputMid = ({
   personCount = 1,
-  floor,
-  tableNumber,
+  reservedTable = [],
   onIncreasePerson,
   onDecreasePerson,
   onTableItemChange,
 }: InfoInputMidProps) => {
-  const remappingTable = tableArr
-    .map((item) => {
-      const tableItemLabels = item.table.map((table) => {
-        const label = `Table ${table.table}·Floor ${item.floor}`;
-        return { id: table.id, tableItemLabel: label };
-      });
-      return tableItemLabels;
-    })
-    .flat();
-  const existedLabels = floor
-    ? tableNumber?.map((num) => ({
-        id: `f${floor}t${num}`,
-        tableItemLabel: `Table ${num}·Floor ${floor}`,
-      }))
-    : [];
+  const remappingTable: TableItemLabel<LabelTable>[] = tableArr.flatMap(
+    ({ floor, table }) =>
+      table.map(({ id, table }) => {
+        const tableItemLabel = `Table ${table}·Floor ${floor}`;
+        return {
+          id,
+          tableItemLabel,
+          floor,
+          table,
+        };
+      })
+  );
+  const existedLabels: LabelTable[] | undefined =
+    reservedTable.length !== 0
+      ? reservedTable.flatMap(({ floor, table }) =>
+          table.map((table) => {
+            const label = `Table ${table}·Floor ${floor}`;
+            return {
+              id: `f${floor}t${table}`,
+              floor,
+              table,
+              tableItemLabel: label,
+            };
+          })
+        )
+      : undefined;
   return (
     <div className="grid grid-cols-3 items-center">
       <div className="flex items-center justify-between">
@@ -57,9 +67,18 @@ export const InfoInputMid = ({
 
 interface InfoInputMidProps {
   personCount?: number;
-  tableNumber?: number[];
-  floor?: number;
+  reservedTable: Pick<
+    ReservationData.Reservation,
+    "reservedTable"
+  >["reservedTable"];
   onIncreasePerson?: () => void;
   onDecreasePerson?: () => void;
-  onTableItemChange?: () => void;
+  onTableItemChange?: (data: LabelTable, isDelete?: boolean) => void;
 }
+
+export type LabelTable = {
+  id: string;
+  tableItemLabel: string;
+  floor: number;
+  table: number;
+};

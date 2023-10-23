@@ -23,6 +23,7 @@ export const InfoInputBottom = ({
           className="h-full"
           ref={textareaRef}
           onBlur={() => setIsWritable((prev) => !prev)}
+          id="notes"
           value={text}
           onChange={onTextChange}
         />

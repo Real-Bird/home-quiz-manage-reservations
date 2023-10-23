@@ -1,13 +1,13 @@
-export const reservationData = [
+export const reservationData: ReservationData.Reservation[] = [
   {
     id: crypto.randomUUID(),
     clientName: "David",
     phoneNumber: "010-1234-4567",
     reservedDate: new Date(2023, 9, 22, 14, 0),
     personCount: 4,
-    reservedTableNumber: [7, 8],
-    reservedFloor: 1,
+    reservedTable: [{ floor: 1, table: [7, 8] }],
     notes: "Birthday",
+    isSeated: false,
   },
   {
     id: crypto.randomUUID(),
@@ -15,9 +15,9 @@ export const reservationData = [
     phoneNumber: "010-1234-4567",
     reservedDate: new Date(2023, 9, 22, 15, 30),
     personCount: 3,
-    reservedTableNumber: [8],
-    reservedFloor: 1,
+    reservedTable: [{ floor: 1, table: [8] }],
     notes: "Note",
+    isSeated: false,
   },
   {
     id: crypto.randomUUID(),
@@ -25,9 +25,9 @@ export const reservationData = [
     phoneNumber: "010-1234-4567",
     reservedDate: new Date(2023, 9, 22, 15, 0),
     personCount: 5,
-    reservedTableNumber: [7],
-    reservedFloor: 1,
+    reservedTable: [{ floor: 2, table: [8] }],
     notes: "Note",
+    isSeated: false,
   },
   {
     id: crypto.randomUUID(),
@@ -35,9 +35,12 @@ export const reservationData = [
     phoneNumber: "010-1234-4567",
     reservedDate: new Date(2023, 10, 1, 18, 0),
     personCount: 1,
-    reservedTableNumber: undefined,
-    reservedFloor: undefined,
+    reservedTable: [
+      { floor: 1, table: [8] },
+      { floor: 2, table: [8] },
+    ],
     notes: undefined,
+    isSeated: false,
   },
   {
     id: crypto.randomUUID(),
@@ -45,9 +48,9 @@ export const reservationData = [
     phoneNumber: "010-1234-4567",
     reservedDate: new Date(2023, 10, 2, 17, 0),
     personCount: 1,
-    reservedTableNumber: undefined,
-    reservedFloor: undefined,
+    reservedTable: [],
     notes: undefined,
+    isSeated: false,
   },
 ];
 
