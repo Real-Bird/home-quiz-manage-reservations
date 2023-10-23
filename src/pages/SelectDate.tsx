@@ -8,11 +8,11 @@ import { useNavigate } from "react-router-dom";
 export const SelectDateModal = () => {
   const navigate = useNavigate();
   const [resisterState, resisterDispatch] = useResister();
-  const [eidtState, editDispatch] = useEdit();
+  const [editState, editDispatch] = useEdit();
   const dateRef = useRef<HTMLDivElement>(null);
   const onSaveDate = () => {
     if (dateRef.current) {
-      if (eidtState.id) {
+      if (editState.id) {
         editDispatch({
           type: "SET_RESERVATION",
           keyword: "reservedDate",
@@ -30,7 +30,7 @@ export const SelectDateModal = () => {
   };
 
   const onDeleteDate = () => {
-    if (eidtState.id) {
+    if (editState.id) {
       editDispatch({
         type: "SET_RESERVATION",
         keyword: "reservedDate",
@@ -48,7 +48,7 @@ export const SelectDateModal = () => {
   return (
     <ModalOverview>
       <SelectDate
-        initialDate={eidtState.reservedDate ?? resisterState.reservedDate}
+        initialDate={editState.reservedDate ?? resisterState.reservedDate}
         ref={dateRef}
         onSaveDate={onSaveDate}
         onDeleteDate={onDeleteDate}
