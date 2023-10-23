@@ -32,10 +32,12 @@ export const MainCard = ({ data }: MainCardProps) => {
   };
   return (
     <div
-      className="bg-white px-2 py-4 rounded-md shadow-custom space-y-3 cursor-pointer h-fit w-52"
+      className="bg-white px-2 py-4 rounded-md shadow-custom space-y-3 cursor-pointer h-fit w-56"
       onClick={onToggleEdit}>
       <div className="flex items-center gap-2">
-        <strong>{clientName}</strong>
+        <strong className="overflow-hidden text-ellipsis whitespace-nowrap max-w-[4rem]">
+          {clientName}
+        </strong>
         <Button
           className="from-default to-white text-sm text-common space-x-2 px-1 py-1.5 before:content-[''] before:bg-[url(../assets/icons/phone.svg)] before:w-6 before:h-6 before:inline-block before:bg-cover"
           style={{ borderRadius: "1.5rem" }}>
