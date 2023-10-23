@@ -14,7 +14,7 @@ export const ReserveForm = ({
     <ModalOverview>
       <FormHeader titlePrefix={titlePrefix} onModalClose={onModalClose} />
       <form
-        className="h-full bg-white rounded-b-md px-4 py-3 flex flex-col gap-8"
+        className="h-5/6 bg-white rounded-b-md px-4 py-3 flex flex-col gap-8"
         onSubmit={(e) => e.preventDefault()}
         {...formAttrs}>
         {children}
