@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 export const MainContent = ({ children }: MainContentProps) => {
   const isNull = !children || (Array.isArray(children) && !children.length);
   return (
-    <div className="h-full bg-default rounded-b-md px-2 py-3">
+    <div className="h-5/6 bg-default rounded-b-md px-2 py-3">
       <div
         className={cls(
           isNull ? "before:content-[''] before:w-52" : "",
