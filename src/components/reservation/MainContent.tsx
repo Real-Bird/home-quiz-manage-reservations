@@ -7,7 +7,7 @@ export const MainContent = ({ children }: MainContentProps) => {
     <div className="h-5/6 bg-default rounded-b-md px-2 py-3">
       <div
         className={cls(
-          isNull ? "before:content-[''] before:w-52" : "",
+          isNull ? "before:content-[''] before:w-56" : "",
           "grid grid-cols-3 gap-3 overflow-y-scroll h-full px-2 py-2"
         )}>
         {children}
