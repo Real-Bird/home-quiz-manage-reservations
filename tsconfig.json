@@ -28,7 +28,9 @@
       "@components/*": ["components/*"],
       "@styles/*": ["styles/*"],
       "@assets/*": ["assets/*"]
-    }
+    },
+
+    "typeRoots": ["./node_modules/@types", "./src/@types"]
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

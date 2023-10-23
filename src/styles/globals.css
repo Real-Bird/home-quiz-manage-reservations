@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.react-datepicker__tab-loop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(2.5rem, -1rem);
+  z-index: 10;
+}
+
+.react-datepicker__triangle {
+  left: -10px !important;
+}

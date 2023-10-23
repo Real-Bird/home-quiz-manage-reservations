@@ -28,5 +28,5 @@ module.exports = {
     "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": "error",
   },
-  ignorePatterns: ["*.config.js", "*.config.ts", "*.cjs"],
+  ignorePatterns: ["*.config.js", "*.config.ts", "*.cjs", "dist"],
 };
